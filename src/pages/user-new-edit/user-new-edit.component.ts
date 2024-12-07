@@ -56,6 +56,7 @@ export class UserNewEditComponent extends FormReactiveBase implements OnInit {
           if (user) {
             this.form.patchValue(user);
             this.get('creditAnalysis').patchValue(true);
+            this.get('document').disable();
           }
         }).catch(() => this._alertService.errorToast(`Erro ao buscar usuário com CPF ${document}`));
     }
@@ -86,6 +87,13 @@ export class UserNewEditComponent extends FormReactiveBase implements OnInit {
     this.get('creditAnalysis').valueChanges
       .subscribe((value: boolean) => {
         this.get('score')[value ? 'enable' : 'disable']();
+      });
+
+    this.get('holderName').valueChanges
+      .subscribe((value: string) => {
+        if (value) {
+          this.get('holderName').setValue(value.toUpperCase(), { emitEvent: false });
+        }
       });
   }
 
@@ -128,12 +136,22 @@ export class UserNewEditComponent extends FormReactiveBase implements OnInit {
   submit(): void {
     const userToSave = this._buildUserDto(this.form.value);
 
-    this._apiService.addUser(userToSave)
-      .then(() => {
-        this._alertService.successToast('Usuário salvo com sucesso!');
-        this._routeService.go([AppRoutes.Dashboard.User.List.path]);
-      })
-      .catch(() => {})
-      .finally(() => {});
+    if (this.isEdit()) {
+      this._apiService.updateUserByDocument(this.document, {...userToSave, document: this.document})
+        .then(() => {
+          this._alertService.successToast('Usuário editado com sucesso!');
+          this._routeService.go([AppRoutes.Dashboard.User.List.path]);
+        })
+        .catch(() => {})
+        .finally(() => {});
+    } else {
+      this._apiService.addUser(userToSave)
+        .then(() => {
+          this._alertService.successToast('Usuário salvo com sucesso!');
+          this._routeService.go([AppRoutes.Dashboard.User.List.path]);
+        })
+        .catch(() => {})
+        .finally(() => {});
+    }
   }
 }

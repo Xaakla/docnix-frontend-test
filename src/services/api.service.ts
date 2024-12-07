@@ -22,18 +22,18 @@ export class ApiService extends Dexie {
     return this._users.add(user);
   }
 
-  public async updateUserByDocument(document: string, user: IUser): Promise<void> {
-    const count = await this._users
-      .where('document')
-      .equals(document)
-      .modify(user);
+  public async updateUserByDocument(document: string, updatedData: IUser): Promise<void> {
+    const user = await this._users.where('document').equals(document).first();
 
-    if (count === 0) {
+    if (!user) {
       throw new Error(`Nenhum usuário encontrado com o documento: ${document}`);
     }
+
+    const updatedUser = { ...user, ...updatedData }; // Mescla os dados existentes com os novos.
+    await this._users.put(updatedUser); // Atualiza o registro.
   }
 
-  public findAll(): Promise<IUser[]> {
+  public async findAll(): Promise<IUser[]> {
     return this._users.toArray();
   }
 
