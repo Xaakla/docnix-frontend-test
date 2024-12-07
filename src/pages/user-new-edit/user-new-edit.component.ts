@@ -135,23 +135,27 @@ export class UserNewEditComponent extends FormReactiveBase implements OnInit {
 
   submit(): void {
     const userToSave = this._buildUserDto(this.form.value);
+    this.submittingFormLoading = true;
 
-    if (this.isEdit()) {
-      this._apiService.updateUserByDocument(this.document, {...userToSave, document: this.document})
-        .then(() => {
-          this._alertService.successToast('Usuário editado com sucesso!');
-          this._routeService.go([AppRoutes.Dashboard.User.List.path]);
-        })
-        .catch(() => {})
-        .finally(() => {});
-    } else {
-      this._apiService.addUser(userToSave)
-        .then(() => {
-          this._alertService.successToast('Usuário salvo com sucesso!');
-          this._routeService.go([AppRoutes.Dashboard.User.List.path]);
-        })
-        .catch(() => {})
-        .finally(() => {});
-    }
+    // Adicionei esse setTimeout somente para visualização do loading do botao apos clicar em salvar
+    setTimeout(() => {
+      if (this.isEdit()) {
+        this._apiService.updateUserByDocument(this.document, {...userToSave, document: this.document})
+          .then(() => {
+            this._alertService.successToast('Usuário editado com sucesso!');
+            this._routeService.go([AppRoutes.Dashboard.User.List.path]);
+          })
+          .catch(() => this.submittingFormLoading = false)
+          .finally(() => {});
+      } else {
+        this._apiService.addUser(userToSave)
+          .then(() => {
+            this._alertService.successToast('Usuário salvo com sucesso!');
+            this._routeService.go([AppRoutes.Dashboard.User.List.path]);
+          })
+          .catch(() => this.submittingFormLoading = false)
+          .finally(() => {});
+      }
+    }, 1000);
   }
 }
