@@ -1,0 +1,24 @@
+@if (form) {
+  <span class="badge" style="position: fixed; right: 30px; font-size: 14px;"
+        [ngClass]="(form.valid ? 'badge-success' : 'badge-danger')">Form is {{ form.valid ? 'valid' : 'invalid' }}</span>
+
+  @if (!simple) {
+    <div style="margin-top: 20px; background-color: #ffffc9; padding: 10px 5px 5px 15px;">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <h5>Form</h5>
+            <ngx-json-viewer [json]="form.value" [expanded]="expanded"></ngx-json-viewer>
+          </div>
+          <div class="col-md-6">
+            <h5>Field Errors</h5>
+            @if (getAllErrors(form)) {
+              <ngx-json-viewer [json]="getAllErrors(form)" [expanded]="true"></ngx-json-viewer>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  <br>
+}

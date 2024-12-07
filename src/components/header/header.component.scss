@@ -1,0 +1,25 @@
+@import '../../assets/scss/variables';
+
+h2 {
+  color: $app-white-color;
+}
+
+.nav-container {
+  padding: 24px 32px;
+  //background: $app-primary-color;
+
+  li {
+    a {
+      color: $app-text-light-color;
+      text-decoration: none;
+    }
+
+    &.nav-active {
+      border-radius: 8px;
+      a {
+        color: $app-white-color !important;
+        text-decoration:  white !important;
+      }
+    }
+  }
+}

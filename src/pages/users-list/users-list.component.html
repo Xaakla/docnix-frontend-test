@@ -1,0 +1,7 @@
+<div class="row g-3">
+  @for (user of users; track user.document) {
+    <div class="col-md-4 col-12">
+      <app-user-card [user]="user" (userToRemove)="removeUser($event)"></app-user-card>
+    </div>
+  }
+</div>

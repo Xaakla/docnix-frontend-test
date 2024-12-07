@@ -1,0 +1,10 @@
+.payment-row {
+  padding: 18px 18px;
+  border-radius: 14px;
+
+  .info-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

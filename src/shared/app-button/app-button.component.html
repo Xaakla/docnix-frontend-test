@@ -1,0 +1,8 @@
+<button [type]="type" [disabled]="loading" [class]="customClass">
+  <div class="d-flex align-items-center">
+    @if (loading) {
+      <div class="spinner"></div>
+    }
+    <span>{{ loading ? loadingLabel : label }}</span>
+  </div>
+</button>

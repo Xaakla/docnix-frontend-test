@@ -1,0 +1,65 @@
+<div class="modal-header d-flex justify-content-between">
+  <h3 class="m-0">
+    Detalhes do usuário
+  </h3>
+  <app-btn-close></app-btn-close>
+</div>
+<div class="modal-body">
+  <div class="payment-row bg-light mb-3">
+    <div class="info-row mb-2">
+      <span>CPF:</span>
+      <b>{{ user.document }}</b>
+    </div>
+    <div class="info-row mb-2">
+      <span>Nome completo:</span>
+      <b>{{user.firstName}} {{user.lastName}}</b>
+    </div>
+    <div class="info-row mb-2">
+      <span>Data de nascimento:</span>
+      <b>{{ user.birthDate }}</b>
+    </div>
+
+    @if (!!user.email) {
+      <div class="info-row mb-2">
+        <span>Email:</span>
+        <b>{{ user.email }}</b>
+      </div>
+    }
+
+    @if (!!user.phone) {
+      <div class="info-row mb-2">
+        <span>Telefone:</span>
+        <b>{{ user.phone }}</b>
+      </div>
+    }
+
+    <hr>
+
+    <div class="info-row mb-2">
+      <span>Número do cartão:</span>
+      <b>{{ user.number }}</b>
+    </div>
+    <div class="info-row mb-2">
+      <span>Nome no cartão:</span>
+      <b>{{ user.holderName }}</b>
+    </div>
+    <div class="info-row mb-2">
+      <span>Data de expiração:</span>
+      <b>{{ user.expirationDate }}</b>
+    </div>
+    <div class="info-row mb-2">
+      <span>Código de segurança:</span>
+      <b>{{ user.securityCode }}</b>
+    </div>
+
+    <hr>
+
+    <div class="info-row mb-2">
+      <span>Crédito SCORE:</span>
+      <B [ngClass]="{'text-bg-success': user.score >= 800,
+                        'text-bg-warning': user.score >= 500 && user.score < 800,
+                        'text-bg-danger': user.score < 500}" class="badge">{{ user.score }}</B>
+    </div>
+
+  </div>
+</div>
