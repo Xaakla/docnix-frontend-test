@@ -6,7 +6,7 @@ import {NgControl} from "@angular/forms";
   standalone: true
 })
 export class OnlyLettersDirective {
-  private regex: RegExp = /^[a-zA-Z\s]*$/;
+  private regex: RegExp = /^[a-zA-ZÀ-ÿ\s]*$/u;
 
   constructor(private control: NgControl) {
   }

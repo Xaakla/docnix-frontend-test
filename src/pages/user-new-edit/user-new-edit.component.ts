@@ -14,6 +14,7 @@ import {RxwebValidators} from "@rxweb/reactive-form-validators";
 import {OnlyLettersDirective} from "../../core/directives/only-letters.directive";
 import {NgxMaskDirective} from "ngx-mask";
 import {ActivatedRoute} from "@angular/router";
+import {NgbTooltip} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-user-new-edit',
@@ -25,7 +26,8 @@ import {ActivatedRoute} from "@angular/router";
     AppButtonComponent,
     FormDebugComponent,
     OnlyLettersDirective,
-    NgxMaskDirective
+    NgxMaskDirective,
+    NgbTooltip
   ],
   templateUrl: './user-new-edit.component.html',
   styleUrl: './user-new-edit.component.scss'
@@ -65,20 +67,20 @@ export class UserNewEditComponent extends FormReactiveBase implements OnInit {
   private _createForm(): void {
     this.form = this._fb.group({
       document: ['', [Validators.required]],
-      firstName: ['das', [Validators.required, RxwebValidators.maxLength({value: 16})]],
-      lastName: ['das', [Validators.required, RxwebValidators.maxLength({value: 40})]],
-      email: ['das@das', [Validators.required, Validators.email]],
-      phone: ['62996764631', Validators.required],
+      firstName: ['', [Validators.required, RxwebValidators.maxLength({value: 16})]],
+      lastName: ['', [Validators.required, RxwebValidators.maxLength({value: 40})]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
       birthDate: ['', Validators.required],
 
-      number: ['3131221212121212', Validators.required],
-      holderName: ['dfsa', [Validators.required, RxwebValidators.maxLength({value: 40})]],
+      number: ['', Validators.required],
+      holderName: ['', [Validators.required, RxwebValidators.maxLength({value: 40})]],
       expirationDate: ['', Validators.required],
-      securityCode: ['123', Validators.required],
+      securityCode: ['', Validators.required],
 
       creditAnalysis: [false, Validators.required],
 
-      score: [500, RxwebValidators.numeric()]
+      score: [500, [RxwebValidators.numeric(), RxwebValidators.maxNumber({value: 1000})]]
     });
   }
 
@@ -92,7 +94,7 @@ export class UserNewEditComponent extends FormReactiveBase implements OnInit {
     this.get('holderName').valueChanges
       .subscribe((value: string) => {
         if (value) {
-          this.get('holderName').setValue(value.toUpperCase(), { emitEvent: false });
+          this.get('holderName').setValue(value.toUpperCase(), {emitEvent: false});
         }
       });
   }
@@ -137,25 +139,24 @@ export class UserNewEditComponent extends FormReactiveBase implements OnInit {
     const userToSave = this._buildUserDto(this.form.value);
     this.submittingFormLoading = true;
 
-    // Adicionei esse setTimeout somente para visualização do loading do botao apos clicar em salvar
-    setTimeout(() => {
-      if (this.isEdit()) {
-        this._apiService.updateUserByDocument(this.document, {...userToSave, document: this.document})
-          .then(() => {
-            this._alertService.successToast('Usuário editado com sucesso!');
-            this._routeService.go([AppRoutes.Dashboard.User.List.path]);
-          })
-          .catch(() => this.submittingFormLoading = false)
-          .finally(() => {});
-      } else {
-        this._apiService.addUser(userToSave)
-          .then(() => {
-            this._alertService.successToast('Usuário salvo com sucesso!');
-            this._routeService.go([AppRoutes.Dashboard.User.List.path]);
-          })
-          .catch(() => this.submittingFormLoading = false)
-          .finally(() => {});
-      }
-    }, 1000);
+    if (this.isEdit()) {
+      this._apiService.updateUserByDocument(this.document, {...userToSave, document: this.document})
+        .then(() => {
+          this._alertService.successToast('Usuário editado com sucesso!');
+          this._routeService.go([AppRoutes.Dashboard.User.List.path]);
+        })
+        .catch(() => this.submittingFormLoading = false)
+        .finally(() => {
+        });
+    } else {
+      this._apiService.addUser(userToSave)
+        .then(() => {
+          this._alertService.successToast('Usuário salvo com sucesso!');
+          this._routeService.go([AppRoutes.Dashboard.User.List.path]);
+        })
+        .catch(() => this.submittingFormLoading = false)
+        .finally(() => {
+        });
+    }
   }
 }

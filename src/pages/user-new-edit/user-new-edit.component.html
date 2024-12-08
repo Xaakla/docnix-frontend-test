@@ -1,4 +1,11 @@
 <div class="container">
+  <div class="row mb-5 align-items-center justify-content-between">
+    <div class="col-auto">
+      <h2>Adicionar Novo Usuário</h2>
+      <span class="text-muted">Preencha os dados pessoais e os dados de pagamento do novo usuário.</span>
+    </div>
+  </div>
+
   <form [formGroup]="form" (submit)="onSubmit()">
 <!--    <app-form-debug [form]="form" [simple]="false"></app-form-debug>-->
     <div class="row g-3 mb-5">
@@ -107,12 +114,15 @@
 
       @if (!!getValue('creditAnalysis')) {
         <div class="col-md-6 col-12">
-          <label for="score" class="form-label">Score de crédito (0 a 1000) <span class="text-danger">*</span></label>
+          <label for="score" class="form-label">Score de crédito (0 a 1000) <span class="text-danger">*</span>
+            &nbsp;<i class="fa-regular fa-circle-question" [ngbTooltip]="''"></i></label>
           <input type="number" class="form-control" id="score"
                  [ngClass]="isValid('score')" formControlName="score">
           <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
                                [control]="get('score')"></field-error-message>
           <field-error-message [type]="'numeric'" [message]="'O número precisa ser positivo'"
+                               [control]="get('score')"></field-error-message>
+          <field-error-message [type]="'maxNumber'" [message]="'O número precisa ser no máximo 1000'"
                                [control]="get('score')"></field-error-message>
         </div>
       }
@@ -121,8 +131,8 @@
     <div class="row g-3">
       <div class="col-12 d-flex justify-content-end">
         <button type="button" (click)="gotoUsersList()"
-                class="btn btn-outline-light px-4 me-2">Voltar</button>
-        <app-button [type]="'submit'" [customClass]="'btn btn-light px-4'"
+                class="btn btn-outline-secondary px-4 me-2">Voltar</button>
+        <app-button [type]="'submit'" [customClass]="'btn btn-primary px-4'"
                     [loading]="submittingFormLoading" [label]="'Salvar Usuário'"
                     [loadingLabel]="'Salvando...'"></app-button>
       </div>
