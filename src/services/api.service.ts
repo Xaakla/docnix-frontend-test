@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Dexie, PromiseExtended, Table} from "dexie";
 import {IUser} from "../interfaces/user.interface";
 
@@ -18,19 +18,28 @@ export class ApiService extends Dexie {
     this._users = this.table('users');
   }
 
-  public addUser(user: IUser): Promise<string> {
-    return this._users.add(user);
+  public addUser(user: IUser): Promise<IUser> {
+    return new Promise((resolve, reject) => {
+      this._users.add(user)
+        .then(() => resolve(user))
+        .catch(() => reject(user));
+    });
   }
 
-  public async updateUserByDocument(document: string, updatedData: IUser): Promise<void> {
+  public async updateUserByDocument(document: string, updatedData: IUser): Promise<IUser> {
     const user = await this._users.where('document').equals(document).first();
 
     if (!user) {
       throw new Error(`Nenhum usuário encontrado com o documento: ${document}`);
     }
 
-    const updatedUser = { ...user, ...updatedData }; // Mescla os dados existentes com os novos.
-    await this._users.put(updatedUser); // Atualiza o registro.
+    const updatedUser = {...user, ...updatedData}; // Mescla os dados existentes com os novos.
+
+    return new Promise((resolve, reject) => {
+      this._users.put(updatedUser)
+        .then(() => resolve(user))
+        .catch(() => reject(user)); // Atualiza o registro.
+    });
   }
 
   public async findAll(): Promise<IUser[]> {
@@ -41,7 +50,11 @@ export class ApiService extends Dexie {
     return this._users.where('document').equals(document).first();
   }
 
-  public deleteByDocument(document: string): Promise<number> {
-    return this._users.where('document').equals(document).delete();
+  public deleteByDocument(document: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this._users.where('document').equals(document).delete()
+        .then(() => resolve(document))
+        .catch(() => reject(document));
+    });
   }
 }

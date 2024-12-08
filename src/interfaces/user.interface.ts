@@ -1,5 +1,3 @@
-import {ICard} from "./card.interface";
-
 export interface IUser {
   document: string;
   firstName: string;
