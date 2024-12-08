@@ -1,5 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
+// Importe as variáveis do sistema
+@import "./assets/scss/variables";
+
+// Importe as variáveis do Bootstrap
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+// Importe o restante do Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+
 .dropdown-toggle::after {
   content: none !important;
 }

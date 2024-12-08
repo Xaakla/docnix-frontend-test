@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {IUser} from "../../interfaces/user.interface";
 import {NgClass} from "@angular/common";
-import {NgbDropdown, NgbDropdownMenu, NgbDropdownToggle, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbDropdown, NgbDropdownMenu, NgbDropdownToggle, NgbModal, NgbTooltip} from "@ng-bootstrap/ng-bootstrap";
 import {UserDetailsComponent} from "../dialogs/user-details/user-details.component";
 import {AlertService} from "../../services/alert.service";
 import {ApiService} from "../../services/api.service";
@@ -17,7 +17,8 @@ import {NgxMaskPipe} from "ngx-mask";
     NgbDropdown,
     NgbDropdownToggle,
     NgbDropdownMenu,
-    NgxMaskPipe
+    NgxMaskPipe,
+    NgbTooltip
   ],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss'
@@ -55,5 +56,9 @@ export class UserCardComponent {
 
   public gotoEditUser() {
     this._routeService.go([AppRoutes.Dashboard.User.Edit.path], {document: this.user.document});
+  }
+
+  public get userTooltipMessage(): string {
+    return this.user.score < 500 ? 'Inapto' : (this.user.score >= 500 && this.user.score < 800 ? 'Apto com limitações' : 'Totalmente Apto');
   }
 }

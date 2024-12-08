@@ -16,7 +16,6 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background: $app-primary-color;
       color: white;
       display: flex;
       justify-content: center;
@@ -47,20 +46,7 @@
     .score {
       padding: 6px 10px;
       border-radius: 8px;
-      color: $app-white-color;
       font-weight: bold;
-
-      &.unfit {
-        background: red;
-      }
-
-      &.limitations {
-        background: darkorange;
-      }
-
-      &.fit {
-        background: darkgreen;
-      }
     }
   }
 }

@@ -55,10 +55,15 @@
     <hr>
 
     <div class="info-row mb-2">
-      <span>Crédito SCORE:</span>
+      <span>Status SCORE:</span>
       <B [ngClass]="{'text-bg-success': user.score >= 800,
                         'text-bg-warning': user.score >= 500 && user.score < 800,
-                        'text-bg-danger': user.score < 500}" class="badge">{{ user.score }}</B>
+                        'text-bg-danger': user.score < 500}" class="badge">{{ userScoreStatus }}</B>
+    </div>
+
+    <div class="info-row mb-2">
+      <span>Crédito SCORE:</span>
+      <b>{{ user.score }}</b>
     </div>
 
   </div>

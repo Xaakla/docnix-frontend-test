@@ -1,6 +1,6 @@
 <div class="card">
   <main class="info">
-    <div class="user-circle">
+    <div class="user-circle bg-primary">
       {{ user.firstName.substring(0, 1) }}
     </div>
     <div class="sub-info">
@@ -10,10 +10,13 @@
   </main>
 
   <footer>
-    <div class="score" [ngClass]="{
-      'fit': user.score >= 800,
-      'limitations': user.score >= 500 && user.score < 800,
-      'unfit': user.score < 500
+    <div class="score text-white"
+         [ngbTooltip]="userTooltipMessage"
+         placement="bottom"
+         [ngClass]="{
+          'bg-success': user.score >= 800,
+          'bg-warning': user.score >= 500 && user.score < 800,
+          'bg-danger': user.score < 500
     }">{{ user.score }}
     </div>
     <div>

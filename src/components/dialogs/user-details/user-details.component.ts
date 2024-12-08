@@ -17,4 +17,8 @@ export class UserDetailsComponent {
 
   @Input() user!: IUser;
 
+  public get userScoreStatus(): string {
+    return this.user.score < 500 ? 'Inapto' : (this.user.score >= 500 && this.user.score < 800 ? 'Apto com limitações' : 'Totalmente Apto');
+  }
+
 }
