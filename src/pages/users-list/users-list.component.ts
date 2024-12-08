@@ -5,12 +5,14 @@ import {AlertService} from "../../services/alert.service";
 import {UserCardComponent} from "../../components/user-card/user-card.component";
 import {AppRoutes} from "../../core/routes.config";
 import {RouteService} from "../../services/route.service";
+import {NgbAlert} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-users-list',
   standalone: true,
   imports: [
-    UserCardComponent
+    UserCardComponent,
+    NgbAlert
   ],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss'

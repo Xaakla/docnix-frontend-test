@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {AppRoutes} from "../../core/routes.config";
+import {RouteService} from "../../services/route.service";
 
 @Component({
   selector: 'app-header',
@@ -8,4 +10,13 @@ import {Component} from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
+  constructor(
+    private _routeService: RouteService
+  ) {
+  }
+
+  public gotoUsersList() {
+    this._routeService.go([AppRoutes.Dashboard.User.List.path]);
+  }
 }
