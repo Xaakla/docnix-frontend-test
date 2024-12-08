@@ -84,6 +84,7 @@ export class UserNewEditComponent extends FormReactiveBase implements OnInit {
     });
   }
 
+  // Escuta as modificações feitas no formulário
   private _listenChanges(): void {
     // Habilita e desabilita o campo de inserção de score de acordo com o valor do checkbox
     this.get('creditAnalysis').valueChanges
@@ -99,6 +100,7 @@ export class UserNewEditComponent extends FormReactiveBase implements OnInit {
       });
   }
 
+  // Lê os parametros da url
   private _readParams() {
     this._activatedRoute.params
       .subscribe({

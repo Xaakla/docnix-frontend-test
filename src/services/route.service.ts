@@ -25,18 +25,6 @@ export class RouteService {
       console.log('%c path: ' + path, 'background: #f2f2f2; color: #0080d0; padding:5px; line-height: 25px');
     }
   }
-
-  updateQueryParams(queryParams: any, complete = () => {
-  }) {
-    this.router.navigate(
-      [],
-      {
-        relativeTo: this.activatedRoute,
-        queryParams,
-        queryParamsHandling: 'merge', // remove to replace all query params by provided
-      }).then(r => {
-    }).catch(err => console.error(err)).finally(() => complete());
-  }
 }
 
 export interface ConfigRoute {

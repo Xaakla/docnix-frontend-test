@@ -10,5 +10,4 @@ import {LayoutComponent} from "../components/layout/layout.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'docnix-frontend-test';
 }
