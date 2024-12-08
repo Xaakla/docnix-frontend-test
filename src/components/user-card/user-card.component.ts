@@ -7,6 +7,7 @@ import {AlertService} from "../../services/alert.service";
 import {ApiService} from "../../services/api.service";
 import {AppRoutes} from "../../core/routes.config";
 import {RouteService} from "../../services/route.service";
+import {NgxMaskPipe} from "ngx-mask";
 
 @Component({
   selector: 'app-user-card',
@@ -15,7 +16,8 @@ import {RouteService} from "../../services/route.service";
     NgClass,
     NgbDropdown,
     NgbDropdownToggle,
-    NgbDropdownMenu
+    NgbDropdownMenu,
+    NgxMaskPipe
   ],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss'

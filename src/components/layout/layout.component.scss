@@ -2,6 +2,9 @@
 
 section {
   min-height: 100vh;
-  background: $app-black-color;
-  padding: 24px 32px;
+
+  .container {
+    margin-top: 32px;
+    margin-bottom: 42px;
+  }
 }

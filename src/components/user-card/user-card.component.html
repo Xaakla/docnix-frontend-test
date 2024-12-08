@@ -5,7 +5,7 @@
     </div>
     <div class="sub-info">
       <span class="c-name">{{ user.firstName }} {{ user.lastName }}</span>
-      <small class="c-document text-muted">{{ user.document }}</small>
+      <small class="c-document text-muted">{{ user.document | mask: '000.000.000-00' }}</small>
     </div>
   </main>
 

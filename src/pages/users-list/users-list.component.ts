@@ -3,6 +3,8 @@ import {ApiService} from "../../services/api.service";
 import {IUser} from "../../interfaces/user.interface";
 import {AlertService} from "../../services/alert.service";
 import {UserCardComponent} from "../../components/user-card/user-card.component";
+import {AppRoutes} from "../../core/routes.config";
+import {RouteService} from "../../services/route.service";
 
 @Component({
   selector: 'app-users-list',
@@ -20,6 +22,7 @@ export class UsersListComponent implements OnInit {
   constructor(
     private _apiService: ApiService,
     private _alertService: AlertService,
+    private _routeService: RouteService
   ) {
   }
 
@@ -31,6 +34,10 @@ export class UsersListComponent implements OnInit {
     this._apiService.findAll()
       .then((users) => this.users = users)
       .catch(() => this._alertService.errorToast('Erro ao buscar usuários!'));
+  }
+
+  public gotoNewUser() {
+    this._routeService.go([AppRoutes.Dashboard.User.Add.path]);
   }
 
   public removeUser(user: IUser): void {

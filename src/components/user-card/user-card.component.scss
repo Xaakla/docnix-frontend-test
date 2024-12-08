@@ -1,7 +1,7 @@
+@import '../../assets/scss/variables';
+
 .card {
-  background: #232323;
-  color: white;
-  padding: 42px 32px;
+  padding: 36px 32px;
   display: flex;
   justify-content: center;
   align-items: start;
@@ -10,18 +10,19 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    background: green;
     width: 100%;
 
     .user-circle {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      background: darkred;
+      background: $app-primary-color;
+      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
       font-weight: bold;
+      font-size: 20px;
       text-transform: uppercase;
       margin-right: 12px;
     }
@@ -29,6 +30,10 @@
     .sub-info {
       display: flex;
       flex-direction: column;
+
+      .c-name {
+        font-weight: bold;
+      }
     }
   }
 
@@ -42,6 +47,8 @@
     .score {
       padding: 6px 10px;
       border-radius: 8px;
+      color: $app-white-color;
+      font-weight: bold;
 
       &.unfit {
         background: red;

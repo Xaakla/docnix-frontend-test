@@ -1,4 +1,17 @@
-<div class="row g-3">
+<div class="row mb-4 align-items-center justify-content-between">
+  <div class="col-auto">
+    <h2>Listagem de Usuários</h2>
+    <span class="text-muted">Gerencie todos os seus usuários criados no sistema.</span>
+  </div>
+  <div class="col-auto">
+    <button type="button" (click)="gotoNewUser()"
+            class="btn btn-outline-primary">
+      Novo usuário
+    </button>
+  </div>
+</div>
+
+<div class="row g-3 mt-4">
   @for (user of users; track user.document) {
     <div class="col-md-4 col-12">
       <app-user-card [user]="user" (userToRemove)="removeUser($event)"></app-user-card>
