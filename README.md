@@ -29,6 +29,16 @@ Siga as etapas abaixo para configurar e rodar o projeto em seu ambiente local.
 1. Navegue até o diretório raiz onde o projeto foi clonado.
 2. Execute um dos seguintes comandos para iniciar o ambiente de desenvolvimento ou compilar o projeto.
 
+### Testes Unitários
+
+A aplicação conta com 4 testes unitários, sendo eles LISTAGEM, CRIAÇÃO, EDIÇÃO e DELEÇÃO de usuários.
+
+Para rodar os testes, execute o seguinte comando:
+
+```bash
+ng test
+```
+
 ### Servidor de Desenvolvimento
 
 Para iniciar o servidor de desenvolvimento, execute o seguinte comando:
