@@ -142,8 +142,6 @@ export class UserNewEditComponent extends FormReactiveBase implements OnInit {
     }
   }
 
-
-
   public isEdit(): boolean {
     return !!this.document;
   }
