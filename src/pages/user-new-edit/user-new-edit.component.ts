@@ -133,6 +133,17 @@ export class UserNewEditComponent extends FormReactiveBase implements OnInit {
     this._routeService.go([AppRoutes.Dashboard.User.List.path]);
   }
 
+  openDatePicker(event: MouseEvent): void {
+    const input = event.target as HTMLInputElement;
+
+    // Garante que o `showPicker` só será chamado se disponível
+    if (typeof input.showPicker === 'function') {
+      input.showPicker();
+    }
+  }
+
+
+
   public isEdit(): boolean {
     return !!this.document;
   }

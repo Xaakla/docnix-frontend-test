@@ -40,6 +40,7 @@
       <div class="col-md-6 col-12">
         <label for="firstname" class="form-label">Data de nascimento <span class="text-danger">*</span></label>
         <input type="date" class="form-control" id="birthDate"
+               (click)="openDatePicker($event)"
                [ngClass]="isValid('birthDate')" formControlName="birthDate">
         <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
                              [control]="get('birthDate')"></field-error-message>
@@ -88,6 +89,7 @@
       <div class="col-md-6 col-12">
         <label for="expirationDate" class="form-label">Data de expiração <span class="text-danger">*</span></label>
         <input type="month" class="form-control" id="expirationDate"
+               (click)="openDatePicker($event)"
                [ngClass]="isValid('expirationDate')" formControlName="expirationDate">
         <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
                              [control]="get('expirationDate')"></field-error-message>
