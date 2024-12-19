@@ -9,30 +9,30 @@
   <form [formGroup]="form" (submit)="onSubmit()">
     <!--    <app-form-debug [form]="form" [simple]="false"></app-form-debug>-->
     <div class="row g-3 mb-5">
-      <div class="col-md-6 col-12">
+      <div class="col-12">
         <label for="title" class="form-label">Título <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="title"
+        <input type="text" class="form-control" id="title" placeholder="Informe um título para o documento"
                [ngClass]="isValid('title')" formControlName="title">
         <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
                              [control]="get('title')"></field-error-message>
       </div>
-      <div class="col-md-6 col-12">
+      <div class="col-12">
         <label for="description" class="form-label">Descrição <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="description"
-               [ngClass]="isValid('description')" formControlName="description">
+        <textarea class="form-control" id="description" rows="5" placeholder="Informe os detalhes do documento..."
+                  [ngClass]="isValid('description')" formControlName="description"></textarea>
         <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
                              [control]="get('description')"></field-error-message>
       </div>
       <div class="col-md-6 col-12">
         <label for="acronym" class="form-label">Sigla <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="acronym"
+        <input type="text" class="form-control" id="acronym" placeholder="Ex:. DOC1"
                [ngClass]="isValid('acronym')" formControlName="acronym">
         <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
                              [control]="get('acronym')"></field-error-message>
       </div>
       <div class="col-md-6 col-12">
         <label for="version" class="form-label">Versão <span class="text-danger">*</span></label>
-        <input type="number" class="form-control" id="version" min="0"
+        <input type="number" class="form-control" id="version" min="0" placeholder="Ex:. 1"
                [ngClass]="isValid('version')" formControlName="version">
         <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
                              [control]="get('version')"></field-error-message>
