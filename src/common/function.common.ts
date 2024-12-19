@@ -24,10 +24,6 @@ export class FunctionCommon {
 }
 
 export module Strings {
-  export function isNullOrEmpty(s: string): boolean {
-    return !s;
-  }
-
   export function isObjectEmpty(obj: any) {
     return Object.keys(obj).length === 0 && obj.constructor === Object;
   }

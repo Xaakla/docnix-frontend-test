@@ -13,69 +13,19 @@
 }
 
 .folder-item:hover {
-  background-color: #f0f0f0;
-  border-color: #ccc;
+  background-color: $folder-background-color;
+  border-color: $folder-border-color;
 }
 
 .folder-icon {
-  font-size: 64px; /* Tamanho do ícone */
-  color: #4b009b; /* Cor do ícone */
-  margin-bottom: 8px; /* Espaço entre o ícone e o nome */
+  font-size: 64px;
+  color: $light-black-color;
+  margin-bottom: 8px;
 }
 
 .folder-name {
   font-size: 14px;
-  color: #333;
+  color: $light-black-color;
   word-break: break-word;
   max-width: 100%;
 }
-
-//.card {
-//  padding: 36px 32px;
-//  display: flex;
-//  justify-content: center;
-//  align-items: start;
-//
-//  .info {
-//    display: flex;
-//    justify-content: start;
-//    align-items: center;
-//    width: 100%;
-//
-//    .user-circle {
-//      width: 50px;
-//      height: 50px;
-//      border-radius: 50%;
-//      display: flex;
-//      justify-content: center;
-//      align-items: center;
-//      font-weight: bold;
-//      font-size: 20px;
-//      text-transform: uppercase;
-//      margin-right: 12px;
-//    }
-//
-//    .sub-info {
-//      display: flex;
-//      flex-direction: column;
-//
-//      .c-name {
-//        font-weight: bold;
-//      }
-//    }
-//  }
-//
-//  footer {
-//    display: flex;
-//    justify-content: space-between;
-//    align-items: center;
-//    width: 100%;
-//    margin-top: 12px;
-//
-//    .score {
-//      padding: 6px 10px;
-//      border-radius: 8px;
-//      font-weight: bold;
-//    }
-//  }
-//}

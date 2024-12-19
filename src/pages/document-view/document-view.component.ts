@@ -24,6 +24,8 @@ export class DocumentViewComponent implements OnInit {
   public documentId!: number;
   public document!: IDocument;
 
+  protected readonly Phase = PhaseEnum;
+
   constructor(
     private _documentService: DocumentService,
     private _activatedRoute: ActivatedRoute,
@@ -61,6 +63,4 @@ export class DocumentViewComponent implements OnInit {
   public translatePhaseEnum(phase: string = 'DRAFT') {
     return FunctionCommon.translatePhaseEnum(phase);
   }
-
-  protected readonly Phase = PhaseEnum;
 }

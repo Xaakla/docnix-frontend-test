@@ -1,10 +1,12 @@
+@import '../../assets/scss/variables';
+
 .document-card {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid $document-border-color;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: $document-background-color;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
 }
@@ -19,7 +21,7 @@
 .document-header h2 {
   margin: 0;
   font-size: 1.5rem;
-  color: #4b009b;
+  color: $primary;
 }
 
 .badge.phase {
@@ -33,9 +35,9 @@
 .document-details p {
   margin: 8px 0;
   line-height: 1.5;
-  color: #333;
+  color: $light-black-color;
 }
 
 .document-details strong {
-  color: #4b009b;
+  color: $primary;
 }

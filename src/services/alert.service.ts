@@ -6,32 +6,6 @@ import Swal, {SweetAlertIcon} from 'sweetalert2';
 })
 export class AlertService {
 
-  confirm(title: string = '', description: string = '', callback: Function) {
-    this._confirm(title, description, callback);
-  }
-
-  private _confirm(
-    title: string = 'title text here?',
-    description: string = 'Lorem ipsum dolor sit amet',
-    callback: Function
-  ): void {
-    Swal.fire({
-      icon: 'question',
-      html: description,
-      title: title,
-      showCancelButton: true,
-      confirmButtonText: 'Sim, confirmar!',
-      cancelButtonText: 'Cancelar',
-      buttonsStyling: false,
-      customClass: {
-        confirmButton: 'btn btn-success mt-2',
-        cancelButton: 'btn btn-danger ms-2 mt-2'
-      }
-    }).then((result) => {
-      callback(!!result.value);
-    });
-  }
-
   successToast(code: string, parameters: object = {}, description: string = ''): void {
     this.toast('success', code, description);
   }

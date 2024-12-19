@@ -1,3 +1,5 @@
+@import '../../assets/scss/variables';
+
 .loading-container {
   display: flex;
   justify-content: center;
@@ -15,7 +17,7 @@
 
 .spinner {
   border: 8px solid rgba(0, 0, 0, 0.4);
-  border-top: 8px solid #ffffff; /* Cor de destaque */
+  border-top: 8px solid $light; /* Cor de destaque */
   border-radius: 50%;
   width: 20px;
   height: 20px;

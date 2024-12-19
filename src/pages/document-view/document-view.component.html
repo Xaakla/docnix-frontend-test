@@ -21,9 +21,9 @@
       <h2>{{ document?.title }}</h2>
       <span class="badge phase"
             [ngClass]="{
-                  'text-bg-warning': document.phase === Phase.DRAFT,
-                  'text-bg-success': document.phase === Phase.ACTIVE,
-                  'text-bg-dark': document.phase === Phase.OBSOLETE
+                  'text-bg-warning': document?.phase === Phase.DRAFT,
+                  'text-bg-success': document?.phase === Phase.ACTIVE,
+                  'text-bg-dark': document?.phase === Phase.OBSOLETE
                 }">{{ translatePhaseEnum(document?.phase) }}</span>
     </div>
     <div class="document-details">

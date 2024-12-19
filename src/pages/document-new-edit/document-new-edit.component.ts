@@ -9,7 +9,6 @@ import {AppRoutes} from "../../core/routes.config";
 import {FormDebugComponent} from "../../shared/form-debug/form-debug.component";
 import {AlertService} from "../../services/alert.service";
 import {RxwebValidators} from "@rxweb/reactive-form-validators";
-import {OnlyLettersDirective} from "../../core/directives/only-letters.directive";
 import {NgxMaskDirective} from "ngx-mask";
 import {ActivatedRoute} from "@angular/router";
 import {NgbTooltip} from "@ng-bootstrap/ng-bootstrap";
@@ -25,7 +24,6 @@ import {HttpErrorResponse} from "@angular/common/http";
     FieldErrorMessageComponent,
     AppButtonComponent,
     FormDebugComponent,
-    OnlyLettersDirective,
     NgxMaskDirective,
     NgbTooltip
   ],
