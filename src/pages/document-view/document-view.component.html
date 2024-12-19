@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row mb-5 align-items-center justify-content-between">
+    <div class="col-auto">
+      <h2>Visualizar Documento</h2>
+      <span
+        class="text-muted">Veja os detalhes dessa versão do documento.</span>
+    </div>
+    <div class="col-auto">
+      <div class="row">
+        <div class="col-auto">
+          <button class="btn btn-light" (click)="gotoVersionsList()">
+            Página anterior
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="document-card">
+    <div class="document-header">
+      <h2>{{ document?.title }}</h2>
+      <span class="badge phase"
+            [ngClass]="{
+                  'text-bg-warning': document.phase === Phase.DRAFT,
+                  'text-bg-success': document.phase === Phase.ACTIVE,
+                  'text-bg-dark': document.phase === Phase.OBSOLETE
+                }">{{ translatePhaseEnum(document?.phase) }}</span>
+    </div>
+    <div class="document-details">
+      <p><strong>Descrição:</strong> {{ document?.description }}</p>
+      <p><strong>Sigla:</strong> {{ document?.acronym }}</p>
+      <p><strong>Versão:</strong> {{ document?.version }}</p>
+      <p><strong>Criado em:</strong> {{ document?.createdAt | date: 'short' }}</p>
+      <p><strong>Modificado em:</strong> {{ document?.updatedAt | date: 'short' }}</p>
+    </div>
+  </div>
+</div>

@@ -131,6 +131,10 @@ export class DocumentsListComponent implements OnInit {
     this._routeService.go([AppRoutes.Dashboard.Folders.Documents.Edit.path], {documentId, acronym: this.pagination.acronym});
   }
 
+  public viewDocument(documentId: number) {
+    this._routeService.go([AppRoutes.Dashboard.Folders.Documents.View.path], {documentId, acronym: this.pagination.acronym});
+  }
+
   public submit(id: number) {
     this._documentService.submit(id)
       .subscribe({

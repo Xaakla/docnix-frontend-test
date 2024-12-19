@@ -35,7 +35,7 @@
     <div class="col-md-6 col-12">
       <div class="search-box">
         <select class="form-control" (ngModelChange)="searchPhase($event)" [(ngModel)]="pagination.phase">
-          <option [disabled]="true" value="">
+          <option value="">
             Todas as fases
           </option>
           <option [value]="Phase.DRAFT">{{translatePhaseEnum(Phase.DRAFT)}}</option>
@@ -84,7 +84,8 @@
                        aria-labelledby="dropdownMenuLink"
                        ngbDropdownMenu placement="bottom-right">
                     <ng-container>
-                      <a class="dropdown-item" href="javascript: void(0);">
+                      <a class="dropdown-item" (click)="viewDocument(document.id)"
+                         href="javascript: void(0);">
                         Visualizar versão
                       </a>
                     </ng-container>

@@ -53,6 +53,16 @@ export class AppRoutes {
             return `${AppRoutes.Dashboard.Folders.Documents.path}/${AppRoutes.Dashboard.Folders.Documents.Edit.field}`;
           }
         }
+
+        public static View = class {
+          public static get field(): string {
+            return ':documentId/view';
+          }
+
+          public static get path(): string {
+            return `${AppRoutes.Dashboard.Folders.Documents.path}/${AppRoutes.Dashboard.Folders.Documents.View.field}`;
+          }
+        }
       }
     }
   }
