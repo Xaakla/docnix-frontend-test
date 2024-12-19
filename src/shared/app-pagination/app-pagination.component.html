@@ -1,0 +1,24 @@
+<ul class="pagination row justify-content-between my-2" [hidden]="!show">
+    <div class="pagination px-2 col py-1 justify-content-center justify-content-xl-start listjs-pagination">
+        <ngb-pagination #paginationComponent [collectionSize]="totalResults"
+                        (pageChange)="paginate($event)" [page]="currentPage"
+                        [maxSize]="handleAmountPaginationItems()"
+                        [pageSize]="itemsPerPage">
+            <ng-template ngbPaginationPrevious>Anterior</ng-template>
+            <ng-template ngbPaginationNext>Próximo</ng-template>
+        </ngb-pagination>
+    </div>
+    <div class="col-xl px-2 col-lg-12 d-inline-flex align-items-center justify-content-center justify-content-xl-end">
+        <span class="my-1">
+            Página {{paginationComponent.page}} de {{paginationComponent.pageCount}}
+            com {{paginationComponent.collectionSize}} registros.
+        </span>
+        <select class="form-control form-control-sm m-1" style="width:auto;" [(ngModel)]="itemsPerPage"
+                (ngModelChange)="changeItemsPerPage($event)">
+          @for (it of itemsPerPageList; track it) {
+            <option [value]="it">{{it}}</option>
+          }
+        </select>
+        <span class="my-1"> itens por página.</span>
+    </div>
+</ul>

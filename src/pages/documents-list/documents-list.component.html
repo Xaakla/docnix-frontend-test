@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row mb-4 align-items-center justify-content-between">
+    <div class="col-auto">
+      <h2>Listagem de Documentos <small>({{pagination.acronym}})</small></h2>
+    </div>
+    <div class="col-auto">
+      <div class="row">
+        <div class="col-auto">
+          <button class="btn btn-light" (click)="gotoFoldersList()">
+            Página anterior
+          </button>
+        </div>
+        <div class="col-auto">
+          <button type="button" (click)="gotoNewDocument()"
+                  class="btn btn-outline-primary">
+            Novo documento
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @if (!loading) {
+    @if (documents.length > 0) {
+      <table class="table table-responsive table-striped table-hover">
+        <thead>
+        <tr>
+          <th class="text-primary" scope="col">#</th>
+          <th class="text-primary" scope="col">Título</th>
+          <th class="text-primary" scope="col">Fase</th>
+          <th class="text-primary" scope="col">Versão</th>
+          <th class="text-primary" scope="col">Data de modificação</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (document of documents; track $index) {
+            <tr>
+              <th class="text-primary" scope="row">{{document.id}}</th>
+              <td>{{ document.title }}</td>
+              <td>
+                <span [ngClass]="{
+                  'text-bg-warning': document.phase === Phase.DRAFT,
+                  'text-bg-success': document.phase === Phase.ACTIVE,
+                  'text-bg-dark': document.phase === Phase.OBSOLETE
+                }" class="badge">{{ translatePhaseEnum(document.phase) }}</span>
+              </td>
+              <td>{{ document.version }}</td>
+              <td>{{ document.updatedAt | date:'dd/MM/yy HH:mm' }}</td>
+              <td class="text-end">
+                <div class="dropdown cursor-pointer" ngbDropdown data-toggle="dropdown"
+                     data-boundary="window" container="body" placement="bottom-right">
+                  <button type="button" class="btn btn-light btn-sm" id="dropdownMenuLink" ngbDropdownToggle
+                          (click)="$event.stopPropagation();">
+                    <i class="fa-solid fa-ellipsis"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-end"
+                       aria-labelledby="dropdownMenuLink"
+                       ngbDropdownMenu placement="bottom-right">
+                    <ng-container>
+                      <a class="dropdown-item" href="javascript: void(0);">
+                        Ver detalhes
+                      </a>
+                    </ng-container>
+                    @if(document.phase === Phase.DRAFT) {
+                      <ng-container>
+                        <a class="dropdown-item" (click)="submit(document.id)"
+                           href="javascript: void(0);">
+                          Submeter
+                        </a>
+                      </ng-container>
+                    }
+                    @if(document.phase === Phase.ACTIVE) {
+                      <ng-container>
+                        <a class="dropdown-item" (click)="generateVersion(document.id)"
+                           href="javascript: void(0);">
+                          Gerar versão
+                        </a>
+                      </ng-container>
+                    }
+                    @if(document.phase === Phase.DRAFT) {
+                      <ng-container>
+                        <a class="dropdown-item" (click)="gotoEditDocument(document.id)"
+                           href="javascript: void(0);">
+                          Editar
+                        </a>
+                      </ng-container>
+                    }
+                  </div>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <app-pagination
+        [show]="pagination.page === 0 || documents.length >= pagination.itemsPerPage || (documents.length < pagination.itemsPerPage && pagination.page > 0)"
+        [totalResults]="pagination.totalResults"
+        [itemsPerPage]="pagination.itemsPerPage"
+        [currentPage]="pagination.page + 1"
+        (itemsPerPageChangeEvent)="changeItemsPerPage($event)"
+        (paginateEvent)="paginate($event)"></app-pagination>
+    } @else {
+      <ngb-alert [dismissible]="false" type="primary">
+        <i class="fa-solid fa-circle-exclamation me-2"></i>
+        {{ 'Não há documentos a serem listados.' }}
+      </ngb-alert>
+    }
+  } @else {
+    <app-loading></app-loading>
+  }
+</div>

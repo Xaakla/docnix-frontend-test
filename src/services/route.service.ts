@@ -8,6 +8,16 @@ export class RouteService {
               private activatedRoute: ActivatedRoute) {
   }
 
+  updateQueryParams(queryParams: any, complete = () => {}) {
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.activatedRoute,
+        queryParams,
+        queryParamsHandling: 'merge', // remove to replace all query params by provided
+      }).then(r => {}).catch(err => console.error(err)).finally(() => complete());
+  }
+
   go(routes: string[], pathVariables: object = {}, queryParams?: object, config?: ConfigRoute) {
     // Get to string
     let path: string = routes.join('/');

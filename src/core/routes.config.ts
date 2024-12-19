@@ -6,42 +6,52 @@ export class AppRoutes {
   public static Dashboard = class {
     public static path: string = 'dashboard';
 
-    public static User = class {
+    public static Folders = class {
       public static get field(): string {
-        return 'user';
+        return 'folders';
       }
 
       public static get path(): string {
-        return `${AppRoutes.Dashboard.path}/${AppRoutes.Dashboard.User.field}`;
+        return `${AppRoutes.Dashboard.path}/${AppRoutes.Dashboard.Folders.field}`;
       }
 
-      public static List = class {
+      public static NewDocument = class {
         public static get field(): string {
-          return 'list';
+          return 'documents/add';
         }
 
         public static get path(): string {
-          return `${AppRoutes.Dashboard.User.path}/${AppRoutes.Dashboard.User.List.field}`;
+          return `${AppRoutes.Dashboard.Folders.path}/${AppRoutes.Dashboard.Folders.NewDocument.field}`;
         }
       }
 
-      public static Add = class {
+      public static Documents = class {
         public static get field(): string {
-          return 'add';
+          return ':acronym/documents';
         }
 
         public static get path(): string {
-          return `${AppRoutes.Dashboard.User.path}/${AppRoutes.Dashboard.User.Add.field}`;
-        }
-      }
-
-      public static Edit = class {
-        public static get field(): string {
-          return ':document/edit';
+          return `${AppRoutes.Dashboard.Folders.path}/${AppRoutes.Dashboard.Folders.Documents.field}`;
         }
 
-        public static get path(): string {
-          return `${AppRoutes.Dashboard.User.path}/${AppRoutes.Dashboard.User.Edit.field}`;
+        public static Add = class {
+          public static get field(): string {
+            return 'add';
+          }
+
+          public static get path(): string {
+            return `${AppRoutes.Dashboard.Folders.Documents.path}/${AppRoutes.Dashboard.Folders.Documents.Add.field}`;
+          }
+        }
+
+        public static Edit = class {
+          public static get field(): string {
+            return ':documentId/edit';
+          }
+
+          public static get path(): string {
+            return `${AppRoutes.Dashboard.Folders.Documents.path}/${AppRoutes.Dashboard.Folders.Documents.Edit.field}`;
+          }
         }
       }
     }

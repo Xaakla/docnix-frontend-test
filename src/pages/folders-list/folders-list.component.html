@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row mb-4 align-items-center justify-content-between">
+    <div class="col-auto">
+      <h2>Gerenciador de Pastas</h2>
+      <span
+        class="text-muted">Aqui estão todos os seus documentos agrupados por pastas para facilitar sua experiência.</span>
+    </div>
+    <div class="col-auto">
+      <button type="button" (click)="gotoNewDocument()"
+              class="btn btn-outline-primary">
+        Novo documento
+      </button>
+    </div>
+  </div>
+
+  @if (!loading) {
+    @if (folders.length > 0) {
+      <div class="file-manager">
+        @for (folder of folders; track $index) {
+          <app-folder-card [folder]="folder" [ngbTooltip]="getMessage(folder.quantity)"
+                           (click)="gotoDocumentsList(folder.acronym)"></app-folder-card>
+        }
+      </div>
+      <app-pagination
+        [show]="pagination.page === 0 || folders.length >= pagination.itemsPerPage || (folders.length < pagination.itemsPerPage && pagination.page > 0)"
+        [totalResults]="pagination.totalResults"
+        [itemsPerPage]="pagination.itemsPerPage"
+        [currentPage]="pagination.page + 1"
+        (itemsPerPageChangeEvent)="changeItemsPerPage($event)"
+        (paginateEvent)="paginate($event)"></app-pagination>
+    } @else {
+      <ngb-alert [dismissible]="false" type="primary">
+        <i class="fa-solid fa-circle-exclamation me-2"></i>
+        {{ 'Não há documentos a serem listados.' }}
+      </ngb-alert>
+    }
+  } @else {
+    <app-loading></app-loading>
+  }
+</div>

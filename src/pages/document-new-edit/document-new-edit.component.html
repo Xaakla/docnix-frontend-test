@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row mb-5 align-items-center justify-content-between">
+    <div class="col-auto">
+      <h2>Novo Documento</h2>
+      <span class="text-muted">Preencha os dados necessários do novo documento.</span>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (submit)="onSubmit()">
+<!--    <app-form-debug [form]="form" [simple]="false"></app-form-debug>-->
+    <div class="row g-3 mb-5">
+      <div class="col-md-6 col-12">
+        <label for="title" class="form-label">Título <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="title"
+               [ngClass]="isValid('title')" formControlName="title">
+        <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
+                             [control]="get('title')"></field-error-message>
+      </div>
+      <div class="col-md-6 col-12">
+        <label for="description" class="form-label">Descrição <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="description"
+               [ngClass]="isValid('description')" formControlName="description">
+        <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
+                             [control]="get('description')"></field-error-message>
+      </div>
+      <div class="col-md-6 col-12">
+        <label for="acronym" class="form-label">Sigla <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="acronym"
+               [ngClass]="isValid('acronym')" formControlName="acronym">
+        <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
+                             [control]="get('acronym')"></field-error-message>
+      </div>
+      <div class="col-md-6 col-12">
+        <label for="version" class="form-label">Versão <span class="text-danger">*</span></label>
+        <input type="number" class="form-control" id="version" min="0"
+               [ngClass]="isValid('version')" formControlName="version">
+        <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
+                             [control]="get('version')"></field-error-message>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-12 d-flex justify-content-end">
+        <button type="button" (click)="handleGoBack()"
+                class="btn btn-outline-secondary me-2">Voltar
+        </button>
+        <app-button [type]="'submit'" [customClass]="'btn btn-primary'"
+                    [loading]="submittingFormLoading" [label]="'Salvar Documento'"
+                    [loadingLabel]="'Salvando...'"></app-button>
+      </div>
+    </div>
+  </form>
+</div>

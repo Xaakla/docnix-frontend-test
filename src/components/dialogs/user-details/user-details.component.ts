@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {BtnCloseComponent} from "../../../shared/btn-close/btn-close.component";
-import {IUser} from "../../../interfaces/user.interface";
 import {NgClass} from "@angular/common";
 
 @Component({
@@ -15,7 +14,7 @@ import {NgClass} from "@angular/common";
 })
 export class UserDetailsComponent {
 
-  @Input() user!: IUser;
+  @Input() user!: any;
 
   public get userScoreStatus(): string {
     return this.user.score < 500 ? 'Inapto' : (this.user.score >= 500 && this.user.score < 800 ? 'Apto com limitações' : 'Totalmente Apto');

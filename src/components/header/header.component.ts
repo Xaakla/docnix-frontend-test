@@ -17,6 +17,6 @@ export class HeaderComponent {
   }
 
   public gotoUsersList() {
-    this._routeService.go([AppRoutes.Dashboard.User.List.path]);
+    this._routeService.go([AppRoutes.Dashboard.Folders.path]);
   }
 }
