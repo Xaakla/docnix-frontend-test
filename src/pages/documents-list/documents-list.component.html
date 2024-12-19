@@ -1,7 +1,9 @@
 <div class="container">
-  <div class="row mb-4 align-items-center justify-content-between">
+  <div class="row mb-5 align-items-center justify-content-between">
     <div class="col-auto">
-      <h2>Listagem de Documentos <small>({{pagination.acronym}})</small></h2>
+      <h2>Listagem de Versões <small>({{ pagination.acronym }})</small></h2>
+      <span
+        class="text-muted">Gerencie todas as versões criadas deste documento.</span>
     </div>
     <div class="col-auto">
       <div class="row">
@@ -10,12 +12,36 @@
             Página anterior
           </button>
         </div>
-        <div class="col-auto">
-          <button type="button" (click)="gotoNewDocument()"
-                  class="btn btn-outline-primary">
-            Novo documento
-          </button>
-        </div>
+        <!--        <div class="col-auto">-->
+        <!--          <button type="button" (click)="gotoNewDocument()"-->
+        <!--                  class="btn btn-outline-primary">-->
+        <!--            Novo documento-->
+        <!--          </button>-->
+        <!--        </div>-->
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md-6 col-12">
+      <div class="search-box">
+        <input type="search" class="form-control" name="search"
+               [(ngModel)]="pagination.title" debounce [debounceTime]="1000"
+               (debounceOnEnter)="search()" (debounceOnChange)="search()"
+               placeholder="Busque pelo título do documento...">
+        <i class="ri-search-line search-icon"></i>
+      </div>
+    </div>
+    <div class="col-md-6 col-12">
+      <div class="search-box">
+        <select class="form-control" (ngModelChange)="searchPhase($event)" [(ngModel)]="pagination.phase">
+          <option [disabled]="true" value="">
+            Todas as fases
+          </option>
+          <option [value]="Phase.DRAFT">{{translatePhaseEnum(Phase.DRAFT)}}</option>
+          <option [value]="Phase.ACTIVE">{{translatePhaseEnum(Phase.ACTIVE)}}</option>
+          <option [value]="Phase.OBSOLETE">{{translatePhaseEnum(Phase.OBSOLETE)}}</option>
+        </select>
       </div>
     </div>
   </div>
@@ -36,7 +62,7 @@
         <tbody>
           @for (document of documents; track $index) {
             <tr>
-              <th class="text-primary" scope="row">{{document.id}}</th>
+              <th class="text-primary" scope="row">{{ document.id }}</th>
               <td>{{ document.title }}</td>
               <td>
                 <span [ngClass]="{
@@ -59,10 +85,10 @@
                        ngbDropdownMenu placement="bottom-right">
                     <ng-container>
                       <a class="dropdown-item" href="javascript: void(0);">
-                        Ver detalhes
+                        Visualizar versão
                       </a>
                     </ng-container>
-                    @if(document.phase === Phase.DRAFT) {
+                    @if (document.phase === Phase.DRAFT) {
                       <ng-container>
                         <a class="dropdown-item" (click)="submit(document.id)"
                            href="javascript: void(0);">
@@ -70,7 +96,7 @@
                         </a>
                       </ng-container>
                     }
-                    @if(document.phase === Phase.ACTIVE) {
+                    @if (document.phase === Phase.ACTIVE) {
                       <ng-container>
                         <a class="dropdown-item" (click)="generateVersion(document.id)"
                            href="javascript: void(0);">
@@ -78,7 +104,7 @@
                         </a>
                       </ng-container>
                     }
-                    @if(document.phase === Phase.DRAFT) {
+                    @if (document.phase === Phase.DRAFT) {
                       <ng-container>
                         <a class="dropdown-item" (click)="gotoEditDocument(document.id)"
                            href="javascript: void(0);">
@@ -97,7 +123,7 @@
         [show]="pagination.page === 0 || documents.length >= pagination.itemsPerPage || (documents.length < pagination.itemsPerPage && pagination.page > 0)"
         [totalResults]="pagination.totalResults"
         [itemsPerPage]="pagination.itemsPerPage"
-        [currentPage]="pagination.page + 1"
+        [currentPage]="ngbPage"
         (itemsPerPageChangeEvent)="changeItemsPerPage($event)"
         (paginateEvent)="paginate($event)"></app-pagination>
     } @else {

@@ -21,7 +21,6 @@
     "@fortawesome/fontawesome-free": "^6.7.1",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@rxweb/reactive-form-validators": "^13.0.1",
-    "@syncfusion/ej2-angular-richtexteditor": "^28.1.35",
     "@types/jquery": "^3.5.32",
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",

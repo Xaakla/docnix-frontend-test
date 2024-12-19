@@ -13,6 +13,8 @@ import {DatePipe, NgClass} from "@angular/common";
 import {PhaseEnum} from "../../enums/phase.enum";
 import {AppRoutes} from "../../core/routes.config";
 import {HttpErrorResponse} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
+import {DebounceDirective} from "../../core/directives/debounce.directive";
 
 @Component({
   selector: 'app-documents-list',
@@ -25,7 +27,9 @@ import {HttpErrorResponse} from "@angular/common/http";
     NgbDropdown,
     NgbDropdownMenu,
     NgbDropdownToggle,
-    NgClass
+    NgClass,
+    FormsModule,
+    DebounceDirective
   ],
   templateUrl: './documents-list.component.html',
   styleUrl: './documents-list.component.scss'
@@ -102,6 +106,8 @@ export class DocumentsListComponent implements OnInit {
 
   private get _defaultPagination(): any {
     return {
+      title: '',
+      phase: '',
       acronym: '',
       totalResults: 0,
       page: 0,
@@ -145,5 +151,16 @@ export class DocumentsListComponent implements OnInit {
         },
         error: ({error}: HttpErrorResponse) => this._alertService.errorToast(!!error ? error : 'Erro ao gerar versão')
       });
+  }
+
+  public search(): void {
+    this.pagination.page = 0;
+    this._routeService.updateQueryParams(this.pagination);
+  }
+
+  public searchPhase(phase: string): void {
+    this.pagination.page = 0;
+    this.pagination.phase = phase;
+    this._routeService.updateQueryParams(this.pagination);
   }
 }
