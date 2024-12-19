@@ -2,8 +2,11 @@
 
 ## Visão Geral
 
-Este projeto frontend foi desenvolvido para o processo seletivo da empresa DOCNIX. Ele permite fazer um CRUD completo de usuários,
-onde na listagem, o sistema apresentará o SCORE de crédito de cada usuário, e informará se está apto ou não.
+Este projeto frontend foi desenvolvido para o processo seletivo da empresa DOCNIX. Ele serve como frontend da api desenvolvida em
+
+```bash
+git clone https://github.com/Xaakla/iglu-soft-test-api.git
+```
 
 ## Requisitos
 
@@ -28,16 +31,6 @@ Siga as etapas abaixo para configurar e rodar o projeto em seu ambiente local.
 
 1. Navegue até o diretório raiz onde o projeto foi clonado.
 2. Execute um dos seguintes comandos para iniciar o ambiente de desenvolvimento ou compilar o projeto.
-
-### Testes Unitários
-
-A aplicação conta com 4 testes unitários, sendo eles LISTAGEM, CRIAÇÃO, EDIÇÃO e DELEÇÃO de usuários.
-
-Para rodar os testes, execute o seguinte comando:
-
-```bash
-ng test
-```
 
 ### Servidor de Desenvolvimento
 
