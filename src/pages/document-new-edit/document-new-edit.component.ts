@@ -62,8 +62,8 @@ export class DocumentNewEditComponent extends FormReactiveBase implements OnInit
   private _createForm(): void {
     this.form = this._fb.group({
       id: [null],
-      title: ['', Validators.required],
-      description: ['', Validators.required],
+      title: ['', [Validators.required, RxwebValidators.maxLength({value: 255})]],
+      description: ['', [Validators.required, RxwebValidators.maxLength({value: 255})]],
       acronym: [{value: this.acronym, disabled: !!this.acronym}, Validators.required],
       version: [{value: '', disabled: this.isEdit()}, [Validators.required, RxwebValidators.numeric()]]
     });

@@ -7,7 +7,7 @@
   </div>
 
   <form [formGroup]="form" (submit)="onSubmit()">
-    <!--    <app-form-debug [form]="form" [simple]="false"></app-form-debug>-->
+        <app-form-debug [form]="form" [simple]="false"></app-form-debug>
     <div class="row g-3 mb-5">
       <div class="col-12">
         <label for="title" class="form-label">Título <span class="text-danger">*</span></label>
@@ -15,12 +15,16 @@
                [ngClass]="isValid('title')" formControlName="title">
         <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
                              [control]="get('title')"></field-error-message>
+        <field-error-message [type]="'maxLength'" [message]="'O máximo de caracteres é 255.'"
+                             [control]="get('title')"></field-error-message>
       </div>
       <div class="col-12">
         <label for="description" class="form-label">Descrição <span class="text-danger">*</span></label>
         <textarea class="form-control" id="description" rows="5" placeholder="Informe os detalhes do documento..."
                   [ngClass]="isValid('description')" formControlName="description"></textarea>
         <field-error-message [type]="'required'" [message]="'O campo é obrigatório'"
+                             [control]="get('description')"></field-error-message>
+        <field-error-message [type]="'maxLength'" [message]="'O máximo de caracteres é 255.'"
                              [control]="get('description')"></field-error-message>
       </div>
       <div class="col-md-6 col-12">
